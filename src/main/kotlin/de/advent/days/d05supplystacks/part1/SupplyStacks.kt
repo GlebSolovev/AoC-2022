@@ -1,7 +1,7 @@
-package de.advent.days.d05supplystacks.part2
+package de.advent.days.d05supplystacks.part1
 
+import de.advent.utils.output
 import de.advent.utils.setUpInput
-import de.advent.utils.setUpOutput
 import java.util.*
 
 private const val STACKS_CNT = 9
@@ -44,17 +44,11 @@ fun main() {
     val stacks = readStacks()
     while (true) {
         val (count, from, to) = readCommandLine() ?: break
-        val bufferStack = Stack<Char>().apply {
-            repeat(count) {
-                val char = stacks[from].pop()
-                push(char)
-            }
-        }
         repeat(count) {
-            stacks[to].push(bufferStack.pop())
+            val char = stacks[from].pop()
+            stacks[to].push(char)
         }
     }
     val result = stacks.joinToString(separator = "") { stack -> if (stack.empty()) "" else stack.pop().toString() }
-    setUpOutput()
-    print(result)
+    output(result)
 }

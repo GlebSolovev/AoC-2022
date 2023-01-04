@@ -11,18 +11,6 @@ private fun readForest(): List<List<Int>> = buildList {
     }
 }
 
-@Suppress("unused")
-private fun checkIsVisible(w: Int, h: Int, grid: List<List<Int>>): Boolean {
-    val width = grid.first().size
-    val height = grid.size
-    val self = grid[h][w]
-    val left = (0 until w).all { grid[h][it] < self }
-    val right = (w + 1 until width).all { grid[h][it] < self }
-    val up = (0 until h).all { grid[it][w] < self }
-    val down = (h + 1 until height).all { grid[it][w] < self }
-    return left || right || up || down
-}
-
 private fun countScenicScore(w: Int, h: Int, grid: List<List<Int>>): Int {
     val width = grid.first().size
     val height = grid.size
